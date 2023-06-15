@@ -5,20 +5,20 @@ export const GifExpertApp = () => {
     const [categories, setCategories] = useState(['one punch', 'dragon ball']);
 
     const onAddCategory = () => {
-            setCategories([...categories, 'Valor ant']);
+        setCategories([...categories, 'Valor ant']);
     }
     console.log(categories);
     return (
         <>
             <h1>Gifexpert</h1>
-            <AddCategory></AddCategory>
+            <AddCategory onAddCategory={setCategories}></AddCategory>
             <button onClick={onAddCategory}>Agregar</button>
             {
-                categories.map( ( category, index ) => (
+                categories.map((category, index) => (
                     <li
-                        key={ index }
+                        key={index}
                     >
-                        { category }
+                        {category}
                     </li>
                 ))
             }
