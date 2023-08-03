@@ -1,17 +1,30 @@
 import {getFifs} from "../hepers/getGifs.js";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {GifItem} from "./GifItem.jsx";
 
 
 export const GifGrid = ({category}) => {
+    const [images, setImages] = useState([]);
+    const getImages = async () => {
+        const newImages = await getFifs(category);
+        setImages(newImages);
+    }
     useEffect(() => {
-        getFifs(category);
+        getImages();
     }, []);
 
 
     return (
         <><h3>{category}</h3>
-            <p>Hola mundo</p>
-
+            <div className="card-grid">
+                {
+                    images.map((image) => (
+                        <GifItem key={image.id}
+                                 {...image}
+                        ></GifItem>
+                    ))
+                }
+            </div>
         </>
     )
 }
